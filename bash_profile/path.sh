@@ -14,6 +14,6 @@ build_path() {
 	local RSTUDIO_PANDOC="/Applications/Rstudio.app/Contents/MacOS/pandoc"
 
 	# Create the final path
-	export PATH="${SUBLIME}:${MINICONDA}:$PATH"
+	export PATH="${SUBLIME}:${MINICONDA}:${RSTUDIO_PANDOC}:$PATH"
 }
 build_path
