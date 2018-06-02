@@ -13,3 +13,9 @@ nuke_all_dockers() {
 	# remove all images
 	docker rmi -f $(docker images -q)
 }
+
+# [description] kill the most recent container you started
+# [usage] kill_most_recent_container
+kill_most_recent_container() {
+    docker kill $(docker ps -ql)
+}
