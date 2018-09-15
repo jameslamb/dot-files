@@ -20,3 +20,40 @@ refresh_branch() {
 	git checkout $1 && \
 	git branch -v
 }
+
+# [description] Clone a fork from Github and set up remotes to make
+#               open source workflow easier. It's valuable to set
+#               one remote for your fork (to push changes) and another
+#               for the upstream project (to keep your fork in sync)
+# [usage]
+#.
+#.     oss_clone jameslamb pkgnet
+#
+# [requires] curl git jq tr
+oss_clone (){
+    
+    # Clone the fork
+    local GH_USER=$1
+    local PROJECT=$2
+    local FORK="git@github.com:${GH_USER}/${PROJECT}.git"
+    git clone ${FORK}
+
+    # Step into the project
+    cd ${PROJECT}
+
+    # Go find the upstream project
+    UPSTREAM=$(
+        curl -X GET \
+        "https://api.github.com/repos/${GH_USER}/${PROJECT}" |
+        jq '.parent' |
+        jq '.ssh_url' |
+        tr -d '"'
+    )
+
+    # set upstream
+    git remote add upstream ${UPSTREAM}
+
+    echo ""
+    echo "Done setting up your local dev instance of ${PROJECT}"
+    git remote -v
+}
