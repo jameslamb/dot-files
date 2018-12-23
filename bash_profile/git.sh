@@ -36,7 +36,7 @@ oss_clone (){
     local GH_USER=$1
     local PROJECT=$2
     local FORK="git@github.com:${GH_USER}/${PROJECT}.git"
-    git clone ${FORK}
+    git clone --depth 5 ${FORK}
 
     # Step into the project
     cd ${PROJECT}
