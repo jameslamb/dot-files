@@ -57,3 +57,21 @@ oss_clone (){
     echo "Done setting up your local dev instance of ${PROJECT}"
     git remote -v
 }
+
+# [description] Given a link to a PR on Github,
+#               clone it to your local.
+# [usage]
+#
+#      cd ~/repos/the_repo
+#      fetch_pr 
+# [requires] git
+# [refs]
+#    * h/t https://twitter.com/romain_francois/status/1086701349671264257
+fetch_pr (){
+    local REMOTE_NAME=$1
+    local PR_NUMBER=$2
+
+    git fetch ${REMOTE_NAME} pull/${PR_NUMBER}/head:pr_${PR_NUMBER}
+    git checkout pr_${PR_NUMBER}
+    git branch -v
+}
