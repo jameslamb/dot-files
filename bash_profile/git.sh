@@ -63,7 +63,8 @@ oss_clone (){
 # [usage]
 #
 #      cd ~/repos/the_repo
-#      fetch_pr 
+#      fetch_pr
+#
 # [requires] git
 # [refs]
 #    * h/t https://twitter.com/romain_francois/status/1086701349671264257
@@ -74,4 +75,26 @@ fetch_pr (){
     git fetch ${REMOTE_NAME} pull/${PR_NUMBER}/head:pr_${PR_NUMBER}
     git checkout pr_${PR_NUMBER}
     git branch -v
+}
+
+# [description] Push current branch to remote without
+#               needing to type out the name
+# [usage]
+# 
+#      gp
+#
+# [requires] git
+gp (){
+    git push origin HEAD
+}
+
+# [decsription] Remove all files in a repo that are explicitly
+#               ignored by git
+# [usage]
+# 
+#      gpclean
+#
+# [requires] git
+gclean (){
+    git clean -d -f -X
 }
