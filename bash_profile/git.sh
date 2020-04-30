@@ -88,7 +88,7 @@ gp (){
     git push origin HEAD
 }
 
-# [decsription] Remove all files in a repo that are explicitly
+# [description] Remove all files in a repo that are explicitly
 #               ignored by git
 # [usage]
 # 
@@ -97,4 +97,17 @@ gp (){
 # [requires] git
 gclean (){
     git clean -d -f -X
+}
+
+# [description] Create and push an empty commit.
+#               Used to trigger actions that happen automatically
+#               on commits, such as continuous integration builds.
+# [usage]
+# 
+#      push_empty
+#
+# [requires] git
+push_empty (){
+    git commit --allow-empty -m "empty commit"
+    git push origin HEAD
 }
