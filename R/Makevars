@@ -1,7 +1,2 @@
-# Ref: https://thecoatlessprofessor.com/programming/openmp-in-r-on-os-x/#gcc-before-3-4-0
-VER=-8
-CC=/usr/local/bin/gcc$(VER)
-CXX=/usr/local/bin/g++$(VER)
-CXX1X=/usr/local/bin/g++$(VER)
-CFLAGS=-mtune=native -g -O2 -Wall -pedantic -Wconversion
-CXXFLAGS=-mtune=native -g -O2 -Wall -pedantic -Wconversion
+# parallelize compilation when packages need to be installed from source
+MAKEFLAGS = -j2
