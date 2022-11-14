@@ -78,14 +78,18 @@ fetch_pr (){
 }
 
 # [description] Push current branch to remote without
-#               needing to type out the name
+#               needing to type out the branch name.
 # [usage]
-# 
-#      gp
+#     # push to 'origin'
+#     gp
+#
+#     # push to some other remote
+#     gp upstream
 #
 # [requires] git
 gp (){
-    git push origin HEAD
+    local remote=${1:-origin}
+    git push ${remote} HEAD
 }
 
 # [description] Remove all files in a repo that are explicitly
