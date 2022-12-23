@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ##########
 # Docker #
 ##########
@@ -17,10 +19,4 @@ nuke_all_dockers() {
     docker volume rm $(docker volume ls -q)
     # remove everything
     docker system prune --all -f
-}
-
-# [description] kill the most recent container you started
-# [usage] kill_most_recent_container
-kill_most_recent_container() {
-    docker kill $(docker ps -ql)
 }

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #######
 # Git #
 #######
@@ -10,17 +12,6 @@ force_update() {
 	git push origin $(git rev-parse --abbrev-ref HEAD) --force
 }
 
-# [description] Remove a branch, get the remote version, checkout to it.
-# [usage] refresh_branch() feature/blegh
-refresh_branch() {
-	git checkout master && \
-	git pull origin master && \
-	git branch -D $1 && \
-	git fetch origin $1 && \
-	git checkout $1 && \
-	git branch -v
-}
-
 # [description] Clone a fork from Github and set up remotes to make
 #               open source workflow easier. It's valuable to set
 #               one remote for your fork (to push changes) and another
@@ -30,16 +21,16 @@ refresh_branch() {
 #.     oss_clone jameslamb pkgnet
 #
 # [requires] curl git jq tr
-oss_clone (){
+oss_clone() {
     
     # Clone the fork
     local GH_USER=$1
     local PROJECT=$2
     local FORK="git@github.com:${GH_USER}/${PROJECT}.git"
-    git clone --depth 5 ${FORK}
+    git clone "${FORK}"
 
     # Step into the project
-    cd ${PROJECT}
+    cd "${PROJECT}" || exit 1
 
     # Go find the upstream project
     UPSTREAM=$(
@@ -51,30 +42,11 @@ oss_clone (){
     )
 
     # set upstream
-    git remote add upstream ${UPSTREAM}
+    git remote add upstream "${UPSTREAM}"
 
     echo ""
     echo "Done setting up your local dev instance of ${PROJECT}"
     git remote -v
-}
-
-# [description] Given a link to a PR on Github,
-#               clone it to your local.
-# [usage]
-#
-#      cd ~/repos/the_repo
-#      fetch_pr
-#
-# [requires] git
-# [refs]
-#    * h/t https://twitter.com/romain_francois/status/1086701349671264257
-fetch_pr (){
-    local REMOTE_NAME=$1
-    local PR_NUMBER=$2
-
-    git fetch ${REMOTE_NAME} pull/${PR_NUMBER}/head:pr_${PR_NUMBER}
-    git checkout pr_${PR_NUMBER}
-    git branch -v
 }
 
 # [description] Push current branch to remote without
@@ -87,9 +59,9 @@ fetch_pr (){
 #     gp upstream
 #
 # [requires] git
-gp (){
+gp() {
     local remote=${1:-origin}
-    git push ${remote} HEAD
+    git push "${remote}" HEAD
 }
 
 # [description] Remove all files in a repo that are explicitly
@@ -99,7 +71,7 @@ gp (){
 #      gpclean
 #
 # [requires] git
-gclean (){
+gclean() {
     git clean -d -f -X
 }
 
@@ -111,7 +83,7 @@ gclean (){
 #      push_empty
 #
 # [requires] git
-push_empty (){
+push_empty() {
     git commit --allow-empty -m "empty commit"
     git push origin HEAD
 }
