@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # be fancy
 export PS1="😬 ./\W \$ "
 

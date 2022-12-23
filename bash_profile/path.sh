@@ -1,3 +1,4 @@
+#!/bin/bash
 
 # [description] Populate PATH without creating a super-long string
 #               or cluttering the terminal env with a bunch of
