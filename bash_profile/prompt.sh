@@ -8,3 +8,6 @@ export PROMPT_DIRTRIM=2
 
 # silence warning about zsh being the default shell on newer Macs
 export BASH_SILENCE_DEPRECATION_WARNING=1
+
+# only keep a bit of history
+HISTSIZE=30
