@@ -4,6 +4,9 @@
 # Git #
 #######
 
+# tab completion
+source /usr/local/etc/bash_completion.d/git-completion.bash
+
 # [description] Overwrite last commit with last message and force push
 #               onto current branch
 # [usage] force_update
