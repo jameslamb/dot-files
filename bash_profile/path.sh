@@ -22,3 +22,7 @@ build_path() {
     export PATH="${SUBLIME}:${MINICONDA}:${RSTUDIO_PANDOC}:${BREW_SBIN}:$PATH"
 }
 build_path
+
+# prevent VS Code from generating multiple "recently used" icons
+# https://github.com/microsoft/vscode/issues/60579
+alias code="open -b com.microsoft.VSCode"
