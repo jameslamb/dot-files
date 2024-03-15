@@ -48,4 +48,12 @@ clean_everything (){
     echo "=================================="
     nuke_all_dockers
     # there is also a ton of stuff in /Users/jlamb/Library/Containers
+
+    echo ""
+    echo "===================================="
+    echo "= Clearing VS Code C++ tools cache ="
+    echo -n "total size: "
+    du -sh "${HOME}/Library/Caches/vscode-cpptools"
+    rm -rf "${HOME}/Library/Caches/vscode-cpptools"
+    echo "done cleaning VS Code C++ tools cache"
 }
