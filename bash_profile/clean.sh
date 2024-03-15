@@ -7,13 +7,15 @@
 # https://davidwalsh.name/brew-cleanup
 # https://docs.docker.com/desktop/mac/space/
 # https://mackeeper.com/blog/mac-system-storage-cleaning/
+# https://mac.install.guide/homebrew/8
 clean_everything (){
 
     echo ""
     echo "==========================="
     echo "= Removing Homebrew stuff ="
     echo "==========================="
-    brew cleanup -s
+    brew autoremove
+    brew cleanup -s --prune=all
 
     echo ""
     echo "========================"
