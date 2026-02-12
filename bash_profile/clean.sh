@@ -8,7 +8,7 @@
 # https://docs.docker.com/desktop/mac/space/
 # https://mackeeper.com/blog/mac-system-storage-cleaning/
 # https://mac.install.guide/homebrew/8
-clean_everything (){
+clean_everything() {
 
     echo ""
     echo "==========================="

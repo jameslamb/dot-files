@@ -10,13 +10,13 @@
 # [ref] https://docs.docker.com/desktop/faqs/macfaqs/
 nuke_all_dockers() {
     # kill running containers
-    docker kill $(docker ps -qa)
+    docker kill "$(docker ps -qa)"
     # delete them
-    docker rm -v $(docker ps -qa)
+    docker rm -v "$(docker ps -qa)"
     # remove all images
-    docker rmi -f $(docker images -q)
+    docker rmi -f "$(docker images -q)"
     # remove all volumes
-    docker volume rm $(docker volume ls -q)
+    docker volume rm "$(docker volume ls -q)"
     # remove everything
     docker system prune --all -f
 }

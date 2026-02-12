@@ -5,14 +5,15 @@
 #######
 
 # tab completion
+# shellcheck disable=SC1091
 source /usr/local/etc/bash_completion.d/git-completion.bash
 
 # [description] Overwrite last commit with last message and force push
 #               onto current branch
 # [usage] force_update
 force_update() {
-	git commit -m "$(git log -1 --pretty=%B | cat)" --amend && \
-	git push origin $(git rev-parse --abbrev-ref HEAD) --force
+    git commit -m "$(git log -1 --pretty=%B | cat)" --amend &&
+        git push origin "$(git rev-parse --abbrev-ref HEAD)" --force
 }
 
 # [description] Clone a fork from Github and set up remotes to make
@@ -25,7 +26,7 @@ force_update() {
 #
 # [requires] curl git jq tr
 oss_clone() {
-    
+
     # Clone the fork
     local GH_USER=$1
     local PROJECT=$2
@@ -38,10 +39,10 @@ oss_clone() {
     # Go find the upstream project
     UPSTREAM=$(
         curl -X GET \
-        "https://api.github.com/repos/${GH_USER}/${PROJECT}" |
-        jq '.parent' |
-        jq '.ssh_url' |
-        tr -d '"'
+            "https://api.github.com/repos/${GH_USER}/${PROJECT}" |
+            jq '.parent' |
+            jq '.ssh_url' |
+            tr -d '"'
     )
 
     # set upstream
@@ -70,7 +71,7 @@ gp() {
 # [description] Remove all files in a repo that are explicitly
 #               ignored by git
 # [usage]
-# 
+#
 #      gpclean
 #
 # [requires] git
@@ -82,7 +83,7 @@ gclean() {
 #               Used to trigger actions that happen automatically
 #               on commits, such as continuous integration builds.
 # [usage]
-# 
+#
 #      push_empty
 #
 # [requires] git
