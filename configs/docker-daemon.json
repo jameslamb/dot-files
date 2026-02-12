@@ -1,0 +1,16 @@
+{
+    "runtimes": {
+        "nvidia": {
+            "args": [],
+            "path": "nvidia-container-runtime"
+        }
+    },
+    "features": {
+        "buildkit": true,
+        "containerd-snapshotter": true,
+    },
+    "registry-mirrors": [
+        "http://127.0.0.1:5002"
+    ],
+    "debug": true
+}

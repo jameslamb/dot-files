@@ -1,0 +1,21 @@
+auto_update_conda: true
+channels:
+  - nodefaults
+  - conda-forge
+channel_priority: strict
+conda-build:
+  pkg-format: '2'
+  set_build_id: false
+number_channel_notices: 0
+
+# do not require "--yes" in scripts
+always_yes: true
+
+# threads to use when downloading and reading repodata
+repodata_threads: 1
+
+# threads to use when downloading packages
+fetch_threads: 1
+
+# default for all other multi-threaded operations
+default_threads: 1
